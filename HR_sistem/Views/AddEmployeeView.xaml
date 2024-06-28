@@ -1,0 +1,63 @@
+﻿<Window x:Class="HR_sistem.Views.AddEmployeeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HR_sistem.Views"
+        xmlns:viewModel="clr-namespace:HR_sistem.ViewModels"
+        mc:Ignorable="d"
+        Title="AddEmployeeView" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModel:AddEmployeeViewModel/>
+    </Window.DataContext>
+    <Grid Margin="10" Background="#70acff">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Add new employee" FontWeight="SemiBold" FontSize="16" Padding="10" Grid.Row="0"></TextBlock>
+        <TextBlock Text="Birth Certificate ID:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding ID}" x:Name="txtID" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Name:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding Name}" x:Name="txtName" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Surname:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding Surname}" x:Name="txtSurname" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Contact:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding Contact}" x:Name="txtContact" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Address:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding Address}" x:Name="txtAddress" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Position:" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding Position}" x:Name="txtPosition" Grid.Row="6" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Working Hours:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding WorkingHours}" x:Name="txtWorkingHours" Grid.Row="7" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Paying Hour:" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <TextBox Text="{Binding PayingHour}" x:Name="txtPayingHour" Grid.Row="8" Grid.Column="1" Margin="5"/>
+
+        <TextBlock Text="Date Of Start:" Grid.Row="9" Grid.Column="0" VerticalAlignment="Center" Margin="7,5"/>
+        <DatePicker SelectedDate="{Binding DateOfStart}" x:Name="datePickerDateOfStart" Grid.Row="9" Grid.Column="1" Margin="5"/>
+
+        <Button Content="Add Employee" Command="{Binding AddUserCommand}" Grid.Row="10" Width="100" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10"/>
+    </Grid>
+</Window>

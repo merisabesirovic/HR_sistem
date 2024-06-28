@@ -1,0 +1,69 @@
+﻿<Window x:Class="HR_sistem.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HR_sistem.Views"
+        xmlns:viewModel="clr-namespace:HR_sistem.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1200">
+    <Window.DataContext>
+        <viewModel:MainViewModel></viewModel:MainViewModel>
+    </Window.DataContext>
+    <Grid Margin="10" Background="#70acff">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="5,2,0,10">
+            <StackPanel>
+                <TextBlock Text="HR in charge of department: " VerticalAlignment="Center" FontSize="16" Padding="0,20,0,0"/>
+                <TextBlock FontSize="10" Margin="5,5,0,0" Text="Click on any column header to sort table"/>
+            </StackPanel>
+            <TextBlock FontWeight="Bold" Text="{Binding CurrentUserAccount.Odeljenje.Name}" FontSize="14" VerticalAlignment="Center" Margin="0,1,0,0"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="20,20,0,10">
+                <TextBlock Width="auto" FontWeight="Bold" FontSize="14" Text="{Binding CurrentUserAccount.Name}" RenderTransformOrigin="0.475, 0.771" Margin="5,0" Height="28" VerticalAlignment="Center"/>
+                <TextBlock Width="auto" FontWeight="Bold" FontSize="14" Text="{Binding CurrentUserAccount.Surname}" RenderTransformOrigin="0.475,0.771" Height="28"/>
+            </StackPanel>
+        </StackPanel>
+
+
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Employees}" AutoGenerateColumns="False" CanUserAddRows ="False" SelectionChanged="DataGrid_SelectionChanged" Margin="0,15,0,-15">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Contact" Binding="{Binding Contact}" />
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Position" Binding="{Binding Position}" />
+                <DataGridTextColumn Header="Working Hours" Binding="{Binding WorkingHours}" />
+                <DataGridTextColumn Header="Paying Hour" Binding="{Binding PayingHour}" />
+                <DataGridTextColumn Header="Date of Start" Binding="{Binding DateOfStart}" />
+                <DataGridTextColumn Header="Odeljenje" Binding="{Binding Odeljenje.Name}" />
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Reviews" Command="{Binding DataContext.ViewReviewsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"/>
+                                <Button Content="Benefits" Command="{Binding DataContext.ViewBenefitsCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+                                <Button Content="Calculate payment" Command="{Binding DataContext.CalculateCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+      
+       
+        <StackPanel  Orientation="Horizontal" Grid.Column="1" Margin="261,20,91,23">
+            <Button Command="{Binding ShowWindowCommand}" Content="Add employee" Width="100" Margin="20,0,0,0"/>
+            <Button Content="Edit/Delete" Command="{Binding EditWindowCommand}" Margin="20,0,0,0"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
